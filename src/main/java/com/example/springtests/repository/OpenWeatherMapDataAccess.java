@@ -10,6 +10,7 @@ import org.springframework.web.client.RestTemplate;
 public class OpenWeatherMapDataAccess implements WeatherDataAccess {
 
     private static final Logger logger = LoggerFactory.getLogger(OpenWeatherMapDataAccess.class);
+    private static final String URL = "http://api.openweathermap.org/data/2.5/weather?q=";
 
     private final RestTemplate restTemplate;
     private final String accessKey;
@@ -23,7 +24,6 @@ public class OpenWeatherMapDataAccess implements WeatherDataAccess {
 
     @Override
     public String getWeatherForCity(String city) {
-        // TODO: make more generic
-        return restTemplate.getForObject("http://api.openweathermap.org/data/2.5/weather?q=" + city, String.class);
+        return restTemplate.getForObject(URL + city, String.class);
     }
 }
