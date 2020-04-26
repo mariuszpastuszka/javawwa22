@@ -23,7 +23,8 @@ public class OpenWeatherMapDataAccess implements WeatherDataAccess {
 
     @Override
     public String getWeatherForCity(String city) {
-        // TODO: make more generic
-        return restTemplate.getForObject("http://api.openweathermap.org/data/2.5/weather?q=" + city, String.class);
+        String url = "http://api.openweathermap.org/data/2.5/weather?q=" + city + "&API_KEY=" + accessKey;
+        logger.info("trying to connect to [{}] for obtaining weather forecast", url);
+        return restTemplate.getForObject(url, String.class);
     }
 }
