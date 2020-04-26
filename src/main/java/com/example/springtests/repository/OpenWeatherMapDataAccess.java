@@ -10,6 +10,7 @@ import org.springframework.web.client.RestTemplate;
 public class OpenWeatherMapDataAccess implements WeatherDataAccess {
 
     private static final Logger logger = LoggerFactory.getLogger(OpenWeatherMapDataAccess.class);
+    private static final String URL = "http://api.openweathermap.org/data/2.5/weather?q=%s&API_KEY=%s";
 
     private final RestTemplate restTemplate;
     private final String accessKey;
@@ -23,7 +24,7 @@ public class OpenWeatherMapDataAccess implements WeatherDataAccess {
 
     @Override
     public String getWeatherForCity(String city) {
-        String url = "http://api.openweathermap.org/data/2.5/weather?q=" + city + "&API_KEY=" + accessKey;
+        String url = String.format(URL, city, accessKey);
         logger.info("trying to connect to [{}] for obtaining weather forecast", url);
         return restTemplate.getForObject(url, String.class);
     }
