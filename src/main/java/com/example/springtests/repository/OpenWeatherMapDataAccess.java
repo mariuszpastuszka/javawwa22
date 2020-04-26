@@ -14,7 +14,7 @@ public class OpenWeatherMapDataAccess implements WeatherDataAccess {
     private final RestTemplate restTemplate;
     private final String accessKey;
 
-    // --map.access.key=new-secret-key --another.param=value
+    // --map.access.key=new-secret-key --another.param=value --second.param=value2
     public OpenWeatherMapDataAccess(final RestTemplate restTemplate, @Value("${map.access.key}") String accessKey) {
         logger.info("injected value: [{}]", accessKey);
         this.accessKey = accessKey;
