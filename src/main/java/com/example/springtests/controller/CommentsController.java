@@ -6,6 +6,9 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 
+import javax.transaction.Transactional;
+import java.util.ArrayList;
+
 @Controller
 public class CommentsController {
 
@@ -19,7 +22,9 @@ public class CommentsController {
 
     @GetMapping("/user-comments")
     String getAllComments(Model model) {
-
+        // z bezpieczeństwo wielowątkowe??
+        // bezstanowość
+        // bardzo wolno - 10s
         model.addAttribute(COMMENTS_KEY, commentService.readAllComments());
         return "user-comments-view";
     }
